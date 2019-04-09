@@ -13,16 +13,14 @@
 // Add as new script to tapermonkey
 // Replace "!!!!" with your org's jira id
 (function() {
-    'use strict';
-    let re = /([a-zA-Z])+[-" "](\d)+/g;
-    let tagHeader = $('.gh-header-title');
-    let tagTitle = tagHeader.find('.js-issue-title');
+	'use strict';
+	let re = /([a-zA-Z])+[-" "](\d)+/g;
+	let tagHeader = $('.gh-header-title');
+	let tagTitle = tagHeader.find('.js-issue-title');
 
-    tagTitle.each((tag) =>{
-        for(let tag of tagTitle[0].innerText.match(re)){
-            tag = tag.replace(/\s/g, '-');
-            var a = '<a href="https://!!!!.atlassian.net/browse/' + tag +'" target="_blank">' + tag + '</a>&nbsp';
-            tagHeader.append(a);
-        }
-    });
+	for(let tag of tagTitle[0].innerText.match(re)) {
+		tag = tag.replace(/\s/g, '-');
+		var a = `<a href="https://!!!!.atlassian.net/browse/${tag}" target="_blank">${tag}</a>&nbsp`;
+		tagHeader.append(a);
+	}
 })();
